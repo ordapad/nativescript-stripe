@@ -5,12 +5,15 @@ export class Stripe {
   private _stripe: com.stripe.android.Stripe;
   private _apiKey: string;
 
-  constructor(apiKey: string) {
+  constructor(apiKey: string, stripeAccount: string) {
     this._apiKey = apiKey;
     this._stripe = new com.stripe.android.Stripe(
       utils.ad.getApplicationContext(),
       apiKey
     );
+    if (stripeAccount) {
+      this._stripe.setStripeAccount(stripeAccount);
+    }
   }
 
   createToken(card: CardCommon, cb: (error: Error, token: Token) => void): void {

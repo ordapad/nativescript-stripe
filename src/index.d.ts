@@ -1,7 +1,7 @@
 import { View } from "tns-core-modules/ui/core/view";
 
 export declare class Stripe {
-  constructor(apiKey: string);
+  constructor(apiKey: string, stripeAccount: string);
   createToken(card: CardCommon, cb: (error: Error, token: Token) => void): void;
   createPaymentMethod(card: CardCommon, cb: (error: Error, pm: PaymentMethod) => void): void;
   retrievePaymentIntent(clientSecret: string, cb: (error: Error, pm: StripePaymentIntent) => void): void;

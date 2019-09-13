@@ -4,8 +4,11 @@ import { CardBrand, CardCommon, CreditCardViewBase, PaymentMethodCommon, StripeP
 import { ios as iosUtils } from "tns-core-modules/utils/utils.ios";
 
 export class Stripe {
-  constructor(apiKey: string) {
+  constructor(apiKey: string, stripeAccount: string) {
     STPPaymentConfiguration.sharedConfiguration().publishableKey = apiKey;
+    if (stripeAccount) {
+      STPPaymentConfiguration.sharedConfiguration().stripeAccount = stripeAccount;
+    }
   }
 
   createToken(card: CardCommon, cb: (error: Error, token: Token) => void): void {
